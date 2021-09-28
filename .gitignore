@@ -1,0 +1,6 @@
+### Files ###
+package-lock.json
+
+### Folders ###
+configs/
+node_modules/
