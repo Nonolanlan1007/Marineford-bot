@@ -8,15 +8,15 @@ module.exports = {
     permissions : modrole, 
     description: 'Rendre muet un membre.',
     cooldown : 120,
-    usage: 'mute <id utilisateur> <raison>',
+    usage: 'mute <mention> <raison>',
     /** 
      * @param {Client} client 
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const member = message.guild.members.cache.get(args[0]);
-        if (!member) return message.reply(`**${client.no} ➜ Veuillez me donner un identifiant valide ou d'un membre présent sur ce serveur.**`)
+        const member = message.mentions.members.first();
+        if (!member) return message.reply(`**${client.no} ➜ Veuillez me donner une mention valide ou d'un membre présent sur ce serveur.**`)
         if (!args[1]) return message.reply(`**${client.no} ➜ Veuillez me donner une raison de réduction au silence.**`)
         if (member.roles.cache.has(muterole)) return message.reply(`**${client.no} ➜ Ce membre est déjà muet !**`)
 
