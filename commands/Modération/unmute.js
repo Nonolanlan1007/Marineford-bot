@@ -8,15 +8,15 @@ module.exports = {
     permissions : modrole, 
     description: 'Rendre la voix à un membre.',
     cooldown : 120,
-    usage: 'unmute <utilisateur>',
+    usage: 'unmute <mention>',
     /** 
      * @param {Client} client 
      * @param {Message} message
      * @param {String[]} args
      */
     run: async(client, message, args) => {
-        const member = message.guild.members.cache.get(args[0]);
-        if (!member) return message.reply(`**${client.no} ➜ Veuillez me donner un identifiant valide ou d'un membre présent sur ce serveur.**`)
+        const member = message.mentions.members.first();
+        if (!member) return message.reply(`**${client.no} ➜ Veuillez me donner une mention valide ou d'un membre présent sur ce serveur.**`)
         if (!member.roles.cache.has(muterole)) return message.reply(`**${client.no} ➜ Ce membre n'est pas  muet !**`)
 
         const e1 = new MessageEmbed()
